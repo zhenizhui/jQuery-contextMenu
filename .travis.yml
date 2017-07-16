@@ -26,7 +26,7 @@ matrix:
 
 
 install:
-- if [ "$JQUERY" ] ; then nvm install 6 && npm install && npm install jquery@$JQUERY ; fi
+- if [ "$JQUERY" ] ; then nvm install 8 && npm install && npm install jquery@$JQUERY ; fi
 - if [ "$DOCUMENTATION" ] ; then cd documentation && composer global require couscous/couscous ; fi
 
 script:
