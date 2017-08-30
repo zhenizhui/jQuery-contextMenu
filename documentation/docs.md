@@ -424,3 +424,11 @@ Allows the selection of the `click` event instead of the `mouseup` event to hand
 
 This option is global: the first contexMenu registered sets it. To change it afterwards all the contextMenu have to be unregistered  with `$.contextMenu( 'destroy' );` before the change has effect again.  
 
+
+### hideOnSecondTrigger
+
+Flag denoting if a second trigger should close the menu, as long as the trigger happened on one of the trigger-element's child nodes.
+
+Warining; this overrides the reposition option.
+
+`hideOnSecondTrigger`: `false`

@@ -5,6 +5,7 @@
 #### Added
 
 * Ability to define touchstart as trigger (thanks @npuser)
+* Add option to hide the menu on a second click/trigger of the trigger element (thanks @OliverColeman)
 
 ### 2.5.0
 
