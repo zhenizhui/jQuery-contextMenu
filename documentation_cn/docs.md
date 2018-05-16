@@ -7,9 +7,9 @@ currentMenu: options
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 
-- [Register new contextMenu](#register-new-contextmenu)
-- [Update contextMenu state](#update-contextmenu-state)
-- [Options (at registration)](#options-at-registration)
+- [注册一个新的菜单](#register-new-contextmenu)
+- [更新菜单的状态](#update-contextmenu-state)
+- [选项（在注册新的菜单的时候使用）](#options-at-registration)
   - [selector](#selector)
   - [items](#items)
   - [appendTo](#appendto)
@@ -29,34 +29,34 @@ currentMenu: options
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-## Register new contextMenu
+## 注册一个新的菜单
 
-To register a new contextMenu:
+使用以下代码来注册一个新的菜单
 
-* Note: For SVG support use jQuery >= 1.12|2.2
+* 注意：如果想支持SVG的话，使用的jQuery的版本要大于1.12，或者直接使用2.2版本
 
 ```javascript
 $.contextMenu( options );
 ```
 
-## Update contextMenu state
+## 更新菜单的状态
 
-It is possible to refresh the state of the contextmenu [disabled](https://swisnl.github.io/jQuery-contextMenu/docs/items.html#disabled), [visibility](https://swisnl.github.io/jQuery-contextMenu/docs/items.html#visible), [icons](https://swisnl.github.io/jQuery-contextMenu/docs/items.html#icon) and [input values](https://swisnl.github.io/jQuery-contextMenu/docs/items.html#type) through the `update` command. This will reevaluate any custom callbacks. 
+我们可以使用upadate来重新刷新contextMenu的各种状态，包括[禁用](https://swisnl.github.io/jQuery-contextMenu/docs/items.html#disabled)，[隐藏](https://swisnl.github.io/jQuery-contextMenu/docs/items.html#visible)，[图标的设置](https://swisnl.github.io/jQuery-contextMenu/docs/items.html#icon)，[输入的值](https://swisnl.github.io/jQuery-contextMenu/docs/items.html#type)，同时这将调用所有的自定义回调函数
 
 ```javascript
 $('.context-menu-one').contextMenu('update'); // update single menu
 $.contextMenu('update') // update all open menus
 ```
 
-## Options (at registration)
+## 选项（在注册新的菜单的时候使用）
 
 ### selector
 
-The jQuery selector matching the elements to trigger on. This option is mandatory.
+该字符串用来匹配jQuery选择器。这个选项是必须的。
 
 `selector`: `string` 
 
-#### Example
+#### 例子
 ```javascript
 $.contextMenu({
     selector: 'span.context-menu'
@@ -65,11 +65,11 @@ $.contextMenu({
 
 ### items
 
-Object with [items](docs/items.html) to be listed in contextMenu. See [items](docs/items.html) for a full documentation on how to build your menu items.
+在菜单里面列出来的[菜单项](docs/item.html)对象。浏览[菜单项](docs/items.html)的详细文档来构建你自己的菜单项
 
-`items`: `object` Object containing [items](docs/items.html) objects.
+`items`: `object` 一个包含[菜单项](docs/items.html)的对象.
 
-#### Example
+#### 例子
 ```javascript
 $.contextMenu({
     selector: '.context-menu',
@@ -87,20 +87,20 @@ $.contextMenu({
 
 ### appendTo
 
-Specifies the selector string or DOMElement the generated menu is to be appended to.
+生成的菜单DOM元素将会插入到指定选择器字符串或者DOM元素的后面（内部的后面）。默认是插入到document.body内部
 
 `appendTo`: `string` or `DOMElement` default: `document.body` 
 
 
-#### Example
+#### 例子
 ```javascript
-// select the container with a selector
+// 用选择器来选择一个容器，这个容器将包含生成的菜单元素
 $.contextMenu({
     selector: 'span.context-menu',
     appendTo: 'div#context-menus-container'
 });
 
-// select the container with a dom element
+// 用dom元素来选择一个容器，这个容器将包含生成的菜单元素
 var element = document.getElementById('context-menus-container');
 $.contextMenu({
     selector: 'span.context-menu',
@@ -113,6 +113,10 @@ $.contextMenu({
 
 Specifies what event on the element specified in the [selector](#selector) triggers the contextmenu. 
 
+指定[选择器]中指定的元素上的事件（β选择器）触发上下文菜单。
+
+定义如何触发这个菜单
+
 `trigger`: `string` default: `'right'` 
 
 
@@ -124,15 +128,16 @@ Value | Description
 `touchstart` | Touchstart only
 `none` | No trigger
 
-#### Example
+#### 例子
 ```javascript
-// trigger with left mouse button
+
+// 通过鼠标左键来触发
 $.contextMenu({
     selector: 'span.context-menu',
     trigger: 'left'
 });
 
-// trigger on hover
+// 悬浮的时候来触发
 $.contextMenu({
     selector: 'span.context-menu',
     trigger: 'hover'
@@ -146,17 +151,17 @@ Flag denoting if a second trigger should close the menu, as long as the trigger 
 `hideOnSecondTrigger`: `boolean` default: `false`
 
 ### selectableSubMenu
- 
-Specifies if menu items containing submenus should be clickable or not. 
 
-`selectableSubMenu`: `boolean` default: `false` 
+定义菜单项包含的子菜单项能否被点击
 
-Value | Description
+`selectableSubMenu`: `boolean` 默认值： `false` 
+
+值 | 描述
 ---- | ---- 
 `true` | All Enabled menu items, even containing others are clickable
 `false` | Items containing subitems are not clickable
 
-#### Example
+#### 例子
 ```javascript
 $.contextMenu({
     selector: 'span.context-menu',
@@ -170,12 +175,12 @@ Specifies if a menu should be repositioned (`true`) or rebuilt (`false`) if a se
 
 `reposition`: `boolean` default: `true` 
 
-Value | Description
+值 | 描述
 ---- | ---- 
 `true` | Reposition menu when triggered
 `false` | Rebuild menu when triggered
 
-#### Example
+#### 例子
 ```javascript
 $.contextMenu({
     selector: 'span.context-menu',
@@ -186,11 +191,11 @@ $.contextMenu({
 
 ### delay
 
-Specifies the time in milliseconds to wait before showing the menu. Only applies to [trigger](#trigger): "hover"
+只对通过“悬浮”[触发](#trigger)菜单这种方式有效。定义菜单出现前的等待时间，单位是毫秒。
 
-`delay`: `int` default: `200` 
+`delay`: `int` 默认是：`200`
 
-#### Example
+#### 例子
 ```javascript
 $.contextMenu({
     selector: 'span.context-menu',
@@ -200,16 +205,16 @@ $.contextMenu({
 
 ### autoHide
 
-Specifies if the menu must be hidden when the mouse pointer is moved out of the [trigger](#trigger) and [menu items](#items).
+当鼠标离开触发菜单的元素和菜单项的时候，是否隐藏菜单。
 
-`autoHide`: `boolean` default: `false` 
+`autoHide`: `boolean` 默认值：`false`
 
-Value | Description
+值 | 描述
 ---- | ---- 
-`true` | Hide the menu on mouseout 
-`false` | Do not hide the menu on mouseout 
+`true` | 鼠标离开的时候隐藏菜单 
+`false` | 鼠标离开的时候不要隐藏菜单 
 
-#### Example
+#### 例子
 ```javascript
 $.contextMenu({
     selector: 'span.context-menu',
@@ -239,11 +244,11 @@ $.contextMenu({
 
 ### className
 
-Specifies additional classNames to add to the menu element. Seperate multiple classes by using spaces.
+给菜单元素添加额外的CSS类名。如果有多个类名，用空格来分隔
 
 `className`: `string`  
 
-#### Example
+#### 例子
 ```javascript
 $.contextMenu({
     selector: 'span.context-menu',
@@ -254,21 +259,21 @@ $.contextMenu({
 
 ### classNames
 
-Specifies the base class names of the contextmenu elements. This can be used to change the class names of some classes that might conflict with frameworks like Bootstrap.
+定义菜单元素的基础样式名。这可以用来更改可能与诸如Bootstrap之类的框架冲突的某些类的类名称。
 
 `classNames`: `object`
 
 ```javascript
-// Classname configuration to be able avoid conflicts in frameworks
+// 在这里配置一些可能会和别的框架冲突的样式名
 var options = {
     classNames : {
     
-        hover:            'hover',          // Item hover
-        disabled:         'disabled',       // Item disabled
-        visible:          'visible',        // Item visible
-        notSelectable:    'not-selectable', // Item not selectable
+        hover:            'hover',          // 悬浮菜单项
+        disabled:         'disabled',       // 禁用菜单项
+        visible:          'visible',        // 隐藏菜单项
+        notSelectable:    'not-selectable', // 菜单项不可选中
     
-        icon:             'context-menu-icon',           // Base icon class
+        icon:             'context-menu-icon',           // 基础图标样式
         iconEdit:         'context-menu-icon-edit',
         iconCut:          'context-menu-icon-cut',
         iconCopy:         'context-menu-icon-copy',
@@ -285,11 +290,11 @@ var options = {
 
 ### animation
 
-Animation properties take effect on showing and hiding the menu. Duration specifies the duration of the animation in milliseconds. `show` and `hide` specify [jQuery methods](http://api.jquery.com/category/effects/) to show and hide elements.
+动画的属性配置作用在隐藏或者显示菜单的时候。持续时间的单位是毫秒。`show`和`hide`的值特指[jQuery methods](http://api.jquery.com/category/effects/)中一些用来显示和隐藏元素的方法名。
 
 `animation`: `object` default: `{duration: 500, show: 'slideDown', hide: 'slideUp'}` 
 
-#### Example
+#### 例子
 ```javascript
 $.contextMenu({
     selector: 'span.context-menu',
@@ -299,32 +304,33 @@ $.contextMenu({
 
 ### events
 <!--  @todo runtime options object -->
-The `show` and `hide` events are triggered *before* the menu is shown or hidden. The event handlers are executed in the context of the triggering object. This will thus reference the jQuery handle of the [trigger](#trigger) object.
 
-A reference to the current options object is passed, the options object is a collection of current options and references to the DOM nodes of the menu. The event handlers may return `false` to prevent the `show` or `hide` process.
+`show`和`hide`事件在菜单出现前或者隐藏前会被调用。这两个事件发生的上下文都是在触发对象中。This will thus reference the jQuery handle of the [trigger](#trigger) object.
+
+当前菜单的配置选项会传递进来。这个菜单的配置选项是一系列菜单选项的集合并且还包含的菜单的DOM节点。你还可以返回一个`false`来阻断`show`和`hide`函数的调用。
 
 `events`: `object` 
 
-Value | Description
+值 | 描述
 ---- | ---- 
-`events.show` | Called before show of the contextmenu 
-`events.hide` | Called before hide of the contextmenu
-`events.activated` | Called after activation of the contextmenu
+`events.show` | 在菜单出现之前调用
+`events.hide` | 在菜单隐藏之前调用
+`events.activated` | 在菜单被激活后调用
 
-#### Example
+#### 例子
 ```javascript
 $.contextMenu({
     selector: 'span.context-menu',
     events: {
        show : function(options){
-            // Add class to the menu
+            // 给菜单添加一个类名
             this.addClass('currently-showing-menu');
              
-            // Show an alert with the selector of the menu
+            // 弹出一个提示框
             if( confirm('Open menu with selector ' + options.selector + '?') === true ){
                 return true;
             } else {
-                // Prevent the menu to be shown.
+                // 返回false不让菜单展现出来
                 return false;
             }            
        },
@@ -332,7 +338,7 @@ $.contextMenu({
            if( confirm('Hide menu with selector ' + options.selector + '?') === true ){
                return true;
            } else {
-               // Prevent the menu to be hidden.
+               // 返回false不让菜单隐藏
                return false;
            }            
        },
@@ -345,10 +351,10 @@ $.contextMenu({
 ```
 
 ### position
-
-Callback to override the position of the context menu. The function is executed in the context of the trigger object. 
-
+ 
+通过一个回调函数来改写菜单的位置。该函数的执行环境在触发对象的上下文。
 The first argument is the `$menu` jQuery object, which is the menu element. The second and third arguments are `x` and `y` coordinates provided by the `show` event.
+第一个参数是`$menu`，它是一个jQuery对象，也就是菜单元素。
 
 The `x` and `y` may either be integers denoting the offset from the top left corner, `undefined`, or the string `"maintain"`. If the string `"maintain"` is provided, the current position of the `$menu` must be used. If the coordinates are `undefined`, appropriate coordinates must be determined. An example of how this can be achieved is provided with [determinePosition](#determinePosition).
 
